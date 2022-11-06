@@ -4,15 +4,7 @@ import GioHang from "./GioHang";
 
 export default class BaiTapGioHang extends Component {
   state = {
-    gioHang: [
-      {
-        maSP: 1,
-        tenSP: "VinSmart Live",
-        giaBan: 5700000,
-        hinhAnh: "./img/vsphone.jpg",
-        soLuong: 2,
-      },
-    ],
+    gioHang: [],
   };
   themGioHang = (spClick) => {
     let spThem = { ...spClick, soLuong: 1 };

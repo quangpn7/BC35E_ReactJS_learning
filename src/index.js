@@ -17,12 +17,14 @@ import DemoChildrenProps from "./Props/DemoChildrenProps/DemoChildrenProps";
 //nhúng css
 import "./assets/css/style.css";
 //setup react router dom
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import HomeTemplate from "./templates/HomeTemplate";
 import BaiTapGioHang from "./pages/BaiTapGioHang/BaiTapGioHang";
+import Page404 from "./pages/Page404/Page404";
+import FormCreateProduct from "./pages/Form/FormCreateProduct";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -32,10 +34,13 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
-          <Route index element={<Home />} />
+          <Route path="home" index element={<Home />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="btgiohang" element={<BaiTapGioHang />} />
+          <Route path="form" element={<FormCreateProduct />} />
+          <Route path="page404" element={<Page404 />} />
+          <Route path="*" element={<Navigate to="/page404" />} />
         </Route>
       </Routes>
     </BrowserRouter>
