@@ -92,6 +92,17 @@ export default class Header extends Component {
                   Store
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active bg-dark text-white" : "nav-link"
+                  }
+                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
+                  to="/blog"
+                >
+                  Blog
+                </NavLink>
+              </li>
             </ul>
             <div className="d-flex my-2 my-lg-0">
               <NavLink to={"/btgiohang"}>

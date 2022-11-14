@@ -27,6 +27,7 @@ import Page404 from "./pages/Page404/Page404";
 import FormCreateProduct from "./pages/Form/FormCreateProduct";
 import LifeCycle from "./pages/LifeCycle/LifeCycle";
 import Store from "./components/StoreAPI/Store";
+import Blog from "./components/BlogAPI/Blog";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -43,6 +44,7 @@ root.render(
           <Route path="form" element={<FormCreateProduct />} />
           <Route path="lifecycle" element={<LifeCycle />} />
           <Route path="store" element={<Store />} />
+          <Route path="blog" element={<Blog />} />
           <Route path="page404" element={<Page404 />} />
           <Route path="*" element={<Navigate to="/page404" />} />
         </Route>
