@@ -28,6 +28,8 @@ import FormCreateProduct from "./pages/Form/FormCreateProduct";
 import LifeCycle from "./pages/LifeCycle/LifeCycle";
 import Store from "./components/StoreAPI/Store";
 import Blog from "./components/BlogAPI/Blog";
+import QLSV from "./components/BaiTapQLSV/QLSV";
+import LifeCycleD from "./components/BaiTapQLSV/LifeCycleD";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -45,6 +47,7 @@ root.render(
           <Route path="lifecycle" element={<LifeCycle />} />
           <Route path="store" element={<Store />} />
           <Route path="blog" element={<Blog />} />
+          <Route path="qlsv" element={<QLSV />} />
           <Route path="page404" element={<Page404 />} />
           <Route path="*" element={<Navigate to="/page404" />} />
         </Route>
