@@ -7,29 +7,54 @@ export default class FormInput extends Component {
     this.state = {
       id: "",
       fullName: "",
-      phone: 0,
+      phone: "",
       email: "",
     };
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.editSv !== this.props.editSv) {
+      this.setState({
+        id: this.props.editSv.id,
+        fullName: this.props.editSv.fullName,
+        phone: this.props.editSv.phone,
+        email: this.props.editSv.email,
+      });
+    }
+  }
 
   render() {
-    const { handleInput } = this.props;
-    let { editFlag } = this.props;
-
+    const { handleInput, update, handleUpdate, editSv } = this.props;
     return (
       <div>
         <div className="row gy-3">
           <div className="col-6">
             <label htmlFor="msSV">Mã SV</label>
-            <input
-              type="text"
-              onChange={(e) => {
-                this.setState({
-                  id: e.target.value,
-                });
-              }}
-              className="form-control"
-            />
+            {update === true ? (
+              <input
+                type="text"
+                id="idField"
+                onChange={(e) => {
+                  this.setState({
+                    id: e.target.value,
+                  });
+                }}
+                className="form-control"
+                disabled
+                value={this.state.id}
+              />
+            ) : (
+              <input
+                type="text"
+                id="idField"
+                onChange={(e) => {
+                  this.setState({
+                    id: e.target.value,
+                  });
+                }}
+                className="form-control"
+                value={this.state.id}
+              />
+            )}
           </div>
           <div className="col-6">
             <label htmlFor="hoTen">Họ tên</label>
@@ -41,6 +66,7 @@ export default class FormInput extends Component {
                   fullName: e.target.value,
                 });
               }}
+              defaultValue={editSv.fullName}
             />
           </div>
           <div className="col-6">
@@ -53,6 +79,7 @@ export default class FormInput extends Component {
                   phone: e.target.value,
                 });
               }}
+              value={this.state.phone}
             />
           </div>
           <div className="col-6">
@@ -65,11 +92,19 @@ export default class FormInput extends Component {
                   email: e.target.value,
                 });
               }}
+              value={this.state.email}
             />
           </div>
         </div>
-        {editFlag === true ? (
-          <button className="btn btn-warning mt-3">Update</button>
+        {update === true ? (
+          <button
+            className="btn btn-warning mt-3"
+            onClick={() => {
+              handleUpdate(this.state);
+            }}
+          >
+            Update
+          </button>
         ) : (
           <button
             className="btn btn-success mt-3"

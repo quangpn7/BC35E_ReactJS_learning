@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Table extends Component {
   render() {
-    const { dataSv, deleteStudent, handleEditFlag } = this.props;
+    const { dataSv, deleteStudent, handleEditData } = this.props;
 
     return (
       <div className="mt-3">
@@ -29,11 +29,12 @@ export default class Table extends Component {
                       <button
                         className="btn-primary"
                         onClick={() => {
-                          handleEditFlag();
+                          handleEditData(sv);
                         }}
                       >
                         <i className="fas fa-edit"></i>
                       </button>
+
                       <button
                         className="btn-danger ms-2"
                         onClick={() => {
