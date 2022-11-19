@@ -13,7 +13,9 @@ import DemoProps from "./Props/DemoProps/DemoProps";
 import BaiTapXemChiTiet from "./State/BaiTapXemChiTiet/BaiTapXemChiTiet";
 import ExerciseCarStore from "./Props/ExcersiceCarStore/ExerciseCarStore";
 import DemoChildrenProps from "./Props/DemoChildrenProps/DemoChildrenProps";
-
+//setup redux store
+import { Provider } from "react-redux";
+import { store } from "./redux/configStore";
 //nhúng css
 import "./assets/css/style.css";
 //setup react router dom
@@ -29,29 +31,32 @@ import LifeCycle from "./pages/LifeCycle/LifeCycle";
 import Store from "./components/StoreAPI/Store";
 import Blog from "./components/BlogAPI/Blog";
 import QLSV from "./components/BaiTapQLSV/QLSV";
-import LifeCycleD from "./components/BaiTapQLSV/LifeCycleD";
+import ReduxDemo from "./pages/ReduxDemo/ReduxDemo";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 //JSX
 root.render(
-  <div>
-    <BrowserRouter>
-      <Routes>
-        <Route path="" element={<HomeTemplate />}>
-          <Route path="home" index element={<Home />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
-          <Route path="btgiohang" element={<BaiTapGioHang />} />
-          <Route path="form" element={<FormCreateProduct />} />
-          <Route path="lifecycle" element={<LifeCycle />} />
-          <Route path="store" element={<Store />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="qlsv" element={<QLSV />} />
-          <Route path="page404" element={<Page404 />} />
-          <Route path="*" element={<Navigate to="/page404" />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  </div>
+  <>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="" element={<HomeTemplate />}>
+            <Route path="home" index element={<Home />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
+            <Route path="btgiohang" element={<BaiTapGioHang />} />
+            <Route path="form" element={<FormCreateProduct />} />
+            <Route path="lifecycle" element={<LifeCycle />} />
+            <Route path="store" element={<Store />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="qlsv" element={<QLSV />} />
+            <Route path="reduxdemo" element={<ReduxDemo />} />
+            <Route path="page404" element={<Page404 />} />
+            <Route path="*" element={<Navigate to="/page404" />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
+  </>
 );

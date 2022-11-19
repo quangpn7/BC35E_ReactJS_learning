@@ -54,9 +54,9 @@ export default class Header extends Component {
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
                   style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
-                  to="/register"
+                  to="/reduxdemo"
                 >
-                  Register
+                  Redux
                 </NavLink>
               </li>
               <li className="nav-item">
