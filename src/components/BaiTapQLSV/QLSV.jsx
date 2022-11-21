@@ -83,8 +83,6 @@ export default class QLSV extends Component {
     }
   };
   handleEditData = (sv) => {
-    console.log(sv);
-
     document.querySelector("#id").value = sv.id;
     document.querySelector("#fullName").value = sv.fullName;
     document.querySelector("#phone").value = sv.phone;
