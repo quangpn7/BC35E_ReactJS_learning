@@ -2,12 +2,14 @@ import React, { Component } from "react";
 
 export default class Table extends Component {
   render() {
-    const { dataSv, deleteStudent, handleEditData } = this.props;
+    const { dataSv, deleteStudent, handleEditData, searchMode, filteredData } =
+      this.props;
+    let data = searchMode === false ? dataSv : filteredData;
 
     return (
       <div className="mt-3">
         <div className="table-responsive">
-          <table className="table table-hover table-striped">
+          <table className="table table-hover table-striped border">
             <thead>
               <tr className="bg-dark text-white">
                 <th>Mã số SV</th>
@@ -18,16 +20,16 @@ export default class Table extends Component {
               </tr>
             </thead>
             <tbody>
-              {dataSv.map((sv) => {
+              {data.map((sv, index) => {
                 return (
-                  <tr key={sv.id}>
-                    <td>{sv.id}</td>
+                  <tr key={index} className="text-start">
+                    <td className="ps-4">{sv.id}</td>
                     <td>{sv.fullName}</td>
                     <td>{sv.phone}</td>
                     <td>{sv.email}</td>
                     <td className="d-flex">
                       <button
-                        className="btn-primary"
+                        className=" btn-primary"
                         onClick={() => {
                           handleEditData(sv);
                         }}
@@ -36,7 +38,7 @@ export default class Table extends Component {
                       </button>
 
                       <button
-                        className="btn-danger ms-2"
+                        className=" btn-danger ms-2"
                         onClick={() => {
                           deleteStudent(sv.id);
                         }}

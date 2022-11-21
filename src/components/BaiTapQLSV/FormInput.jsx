@@ -5,25 +5,109 @@ export default class FormInput extends Component {
     super(props);
 
     this.state = {
-      id: "",
-      fullName: "",
-      phone: "",
-      email: "",
+      values: {
+        id: "",
+        fullName: "",
+        phone: "",
+        email: "",
+      },
+      errors: {
+        id: "",
+        fullName: "",
+        phone: "",
+        email: "",
+      },
+      valid: false,
     };
   }
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.editSv !== this.props.editSv) {
+    if (
+      JSON.stringify(prevProps.editSv) !== JSON.stringify(this.props.editSv)
+    ) {
+      let newValues = this.props.editSv;
+      console.log(newValues);
       this.setState({
-        id: this.props.editSv.id,
-        fullName: this.props.editSv.fullName,
-        phone: this.props.editSv.phone,
-        email: this.props.editSv.email,
+        values: newValues,
       });
     }
+    if (prevState.valid !== this.state.valid) {
+      this.props.getValid(this.state.valid);
+    }
   }
+  isValid = () => {
+    let { values, errors } = this.state;
+    for (let key in errors) {
+      if (errors[key] !== "" || values[key] === "") {
+        return false;
+      }
+    }
+    return true;
+  };
 
+  handleInputChange = (e) => {
+    let { value, id } = e.target;
+    let pureInputName = e.target.getAttribute("data-purename");
+    let type = e.target.getAttribute("data-type");
+    //Hanle input value
+    let newValues = this.state.values;
+    newValues[id] = value;
+    //Handle error/valid
+    let newErrors = this.state.errors;
+    let messError = "";
+
+    if (value.trim() === "") {
+      messError = pureInputName + ` Không để trống`;
+    } else {
+      if (type === "number") {
+        let regexNumber = /^\d{4,16}$/;
+        if (!regexNumber.test(value)) {
+          messError = pureInputName + " không hợp lệ";
+        }
+      } else if (type === "name") {
+        let regexName = new RegExp(
+          /^[A-Za-z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễếệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/
+        );
+        if (!regexName.test(value)) {
+          messError =
+            pureInputName +
+            " phải viết in chữ cái đầu, không có số, không có ký tự đặc biệt";
+          console.log(messError);
+        }
+      } else if (type === "email") {
+        let regexEmail = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/);
+        if (!regexEmail.test(value)) {
+          messError = pureInputName + " không hợp lệ";
+        }
+      } else if (type === "id") {
+        for (let existedId of this.props.existedId) {
+          if (value === existedId) {
+            messError = pureInputName + " đã tồn tại";
+          }
+        }
+        let regexId = new RegExp(/^[a-zA-Z0-9_.-]*$/);
+        if (!regexId.test(value)) {
+          messError = pureInputName + " không có ký tự đặc biệt";
+        }
+      }
+    }
+    newErrors[id] = messError;
+
+    this.setState(
+      {
+        values: newValues,
+        errors: newErrors,
+      },
+      () => {
+        let valid = this.isValid();
+        this.setState({
+          valid: valid,
+        });
+      }
+    );
+  };
   render() {
-    const { handleInput, update, handleUpdate, editSv } = this.props;
+    const { handleSubmit, update, handleUpdate } = this.props;
+    console.log(this.props.existedId);
     return (
       <div>
         <div className="row gy-3">
@@ -31,77 +115,77 @@ export default class FormInput extends Component {
             <label htmlFor="msSV">Mã SV</label>
             {update === true ? (
               <input
-                type="text"
-                id="idField"
-                onChange={(e) => {
-                  this.setState({
-                    id: e.target.value,
-                  });
-                }}
-                className="form-control"
+                data-type="id"
+                data-purename="ID"
+                id="id"
+                onInput={this.handleInputChange}
                 disabled
-                value={this.state.id}
+                className="form-control"
               />
             ) : (
               <input
-                type="text"
-                id="idField"
-                onChange={(e) => {
-                  this.setState({
-                    id: e.target.value,
-                  });
-                }}
+                data-type="id"
+                id="id"
+                data-purename="ID"
+                onInput={this.handleInputChange}
                 className="form-control"
-                value={this.state.id}
               />
+            )}
+            {this.state.errors.id !== "" && (
+              <div className="text-danger mt-2">*{this.state.errors.id}</div>
             )}
           </div>
           <div className="col-6">
             <label htmlFor="hoTen">Họ tên</label>
             <input
-              type="text"
+              id="fullName"
+              data-type="name"
+              data-purename="Tên"
               className="form-control"
-              onChange={(e) => {
-                this.setState({
-                  fullName: e.target.value,
-                });
-              }}
-              defaultValue={editSv.fullName}
+              onInput={this.handleInputChange}
             />
+            {this.state.errors.fullName !== "" && (
+              <div className="text-danger mt-2">
+                *{this.state.errors.fullName}
+              </div>
+            )}
           </div>
+
           <div className="col-6">
             <label htmlFor="phone">Số điện thoại</label>
             <input
-              type="number"
+              id="phone"
+              data-type="number"
+              data-purename="Số điện thoại"
               className="form-control"
-              onChange={(e) => {
-                this.setState({
-                  phone: e.target.value,
-                });
-              }}
-              value={this.state.phone}
+              onInput={this.handleInputChange}
             />
+            {this.state.errors.phone !== "" && (
+              <div className="text-danger mt-2">*{this.state.errors.phone}</div>
+            )}
           </div>
+
           <div className="col-6">
             <label htmlFor="email">Email</label>
             <input
-              type="email"
+              id="email"
+              data-type="email"
+              data-purename="Email"
               className="form-control"
-              onChange={(e) => {
-                this.setState({
-                  email: e.target.value,
-                });
-              }}
-              value={this.state.email}
+              onInput={this.handleInputChange}
             />
+            {this.state.errors.email !== "" && (
+              <div className="text-danger mt-2">*{this.state.errors.email}</div>
+            )}
           </div>
         </div>
         {update === true ? (
           <button
             className="btn btn-warning mt-3"
             onClick={() => {
-              handleUpdate(this.state);
+              handleUpdate(this.state.values);
             }}
+            disabled={!this.state.valid}
           >
             Update
           </button>
@@ -109,8 +193,9 @@ export default class FormInput extends Component {
           <button
             className="btn btn-success mt-3"
             onClick={() => {
-              handleInput(this.state);
+              handleSubmit(this.state.values);
             }}
+            disabled={!this.state.valid}
           >
             Thêm sinh viên
           </button>
