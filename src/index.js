@@ -32,6 +32,7 @@ import Store from "./components/StoreAPI/Store";
 import Blog from "./components/BlogAPI/Blog";
 import QLSV from "./components/BaiTapQLSV/QLSV";
 import ReduxDemo from "./pages/ReduxDemo/ReduxDemo";
+import BaiTapGameXucXac from "./pages/BaiTapXucXac/BaiTapGameXucXac";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -52,6 +53,7 @@ root.render(
             <Route path="blog" element={<Blog />} />
             <Route path="qlsv" element={<QLSV />} />
             <Route path="reduxdemo" element={<ReduxDemo />} />
+            <Route path="xucxac" element={<BaiTapGameXucXac />} />
             <Route path="page404" element={<Page404 />} />
             <Route path="*" element={<Navigate to="/page404" />} />
           </Route>

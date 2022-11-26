@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { BaiTapXucXacReducer } from "./reducers/baiTapXucXacReducer";
 import { arrNguoiDungReducer } from "./reducers/nguoiDungReducer";
 export const store = configureStore({
   reducer: {
@@ -27,5 +28,6 @@ export const store = configureStore({
       }
     },
     arrNguoiDungReducer: arrNguoiDungReducer,
+    baiTapXucXacReducer: BaiTapXucXacReducer,
   },
 });

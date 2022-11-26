@@ -30,7 +30,6 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/home"
                   aria-current="page"
                 >
@@ -42,7 +41,6 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/login"
                 >
                   Login
@@ -53,7 +51,6 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/reduxdemo"
                 >
                   Redux
@@ -64,7 +61,6 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/form"
                 >
                   Form
@@ -75,7 +71,6 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/lifecycle"
                 >
                   lifecycle
@@ -86,7 +81,6 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/store"
                 >
                   Store
@@ -97,7 +91,6 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/blog"
                 >
                   Blog
@@ -108,10 +101,19 @@ export default class Header extends Component {
                   className={({ isActive }) =>
                     isActive ? "nav-link active bg-dark text-white" : "nav-link"
                   }
-                  style={({ isActive }) => (isActive ? { fontSize: 30 } : {})}
                   to="/qlsv"
                 >
                   QLSV
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active bg-dark text-white" : "nav-link"
+                  }
+                  to="/xucxac"
+                >
+                  XXG
                 </NavLink>
               </li>
             </ul>
