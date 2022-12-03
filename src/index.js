@@ -33,6 +33,15 @@ import Blog from "./components/BlogAPI/Blog";
 import QLSV from "./components/BaiTapQLSV/QLSV";
 import ReduxDemo from "./pages/ReduxDemo/ReduxDemo";
 import BaiTapGameXucXac from "./pages/BaiTapXucXac/BaiTapGameXucXac";
+import UseStateDemo from "./pages/HookDemo/useStateDemo/UseStateDemo";
+import UseEffectDemo from "./pages/HookDemo/useEffectDemo./UseEffectDemo";
+import DemoCategory from "./pages/HookDemo/useEffectDemo./DemoCategory";
+import UseCallBackDemo from "./pages/HookDemo/UseCallBackDemo/UseCallBackDemo";
+import UseMemeDemo from "./pages/HookDemo/UseMemoDemo/UseMemeDemo";
+import UseRefDemo from "./pages/HookDemo/UseRefDemo/UseRefDemo";
+import UseRedux from "./pages/HookDemo/UseRedux/UseRedux";
+import DemoUseNavigate from "./pages/HookRouter/DemoUseNavigate";
+import DemoUseParams from "./pages/HookRouter/DemoUseParams";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -54,6 +63,17 @@ root.render(
             <Route path="qlsv" element={<QLSV />} />
             <Route path="reduxdemo" element={<ReduxDemo />} />
             <Route path="xucxac" element={<BaiTapGameXucXac />} />
+            <Route path="usestate" element={<UseStateDemo />} />
+            <Route path="useeffectstate" element={<UseEffectDemo />} />
+            <Route path="use-effect-update" element={<DemoCategory />} />
+            <Route path="use-callback-demo" element={<UseCallBackDemo />} />
+            <Route path="use-memo-demo" element={<UseMemeDemo />} />
+            <Route path="use-ref-demo" element={<UseRefDemo />} />
+            <Route path="use-redux-demo" element={<UseRedux />} />
+            <Route path="use-navigate" element={<DemoUseNavigate />} />
+            <Route path="detail">
+              <Route path=":id" element={<DemoUseParams />}></Route>
+            </Route>
             <Route path="page404" element={<Page404 />} />
             <Route path="*" element={<Navigate to="/page404" />} />
           </Route>

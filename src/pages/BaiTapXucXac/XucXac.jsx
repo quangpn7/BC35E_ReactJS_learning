@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { datCuocAction } from "../../redux/actiionReducer/baiTapGameAction";
 
 class XucXac extends Component {
   renderResult = () => {
@@ -20,10 +21,7 @@ class XucXac extends Component {
             <button
               className="btn"
               onClick={() => {
-                const action = {
-                  type: "DAT_CUOC",
-                  payload: true,
-                };
+                const action = datCuocAction(true);
                 this.props.dispatch(action);
               }}
             >
@@ -63,10 +61,7 @@ class XucXac extends Component {
             <button
               className="btn"
               onClick={() => {
-                const action = {
-                  type: "DAT_CUOC",
-                  payload: false,
-                };
+                const action = datCuocAction(false);
                 this.props.dispatch(action);
               }}
             >

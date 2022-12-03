@@ -116,6 +116,58 @@ export default class Header extends Component {
                   XXG
                 </NavLink>
               </li>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Hooks
+                </a>
+                <div className="dropdown-menu" aria-labelledby="dropdownId">
+                  <NavLink className="dropdown-item" to="/usestate">
+                    useState
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/useeffectstate">
+                    useEffect
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/use-effect-update">
+                    useEffect (Update)
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/use-callback-demo">
+                    useCallBackDemo
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/use-memo-demo">
+                    useMemoDemo
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/use-ref-demo">
+                    useRefDemo
+                  </NavLink>
+                  <NavLink className="dropdown-item" to="/use-redux-demo">
+                    useReduxDemo
+                  </NavLink>
+                </div>
+              </li>
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="dropdownId"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Hooks Router
+                </a>
+                <div className="dropdown-menu" aria-labelledby="dropdownId">
+                  <NavLink className="dropdown-item" to="/use-navigate">
+                    useNavigate
+                  </NavLink>
+                </div>
+              </li>
             </ul>
             <div className="d-flex my-2 my-lg-0">
               <NavLink to={"/btgiohang"}>
