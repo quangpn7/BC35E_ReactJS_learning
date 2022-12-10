@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import useRoute from "../../hooks/useRoute";
 
 const DemoUseNavigate = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const { params, navigate } = useRoute;
   const frmLogin = useFormik({
     initialValues: {
       email: "",

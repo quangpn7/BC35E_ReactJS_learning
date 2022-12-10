@@ -42,6 +42,8 @@ import UseRefDemo from "./pages/HookDemo/UseRefDemo/UseRefDemo";
 import UseRedux from "./pages/HookDemo/UseRedux/UseRedux";
 import DemoUseNavigate from "./pages/HookRouter/DemoUseNavigate";
 import DemoUseParams from "./pages/HookRouter/DemoUseParams";
+import DemoUseSearchParams from "./pages/HookRouter/DemoUseSearchParams";
+import DemoCustom from "./hooks/DemoCustom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -52,7 +54,7 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="" element={<HomeTemplate />}>
-            <Route path="home" index element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
             <Route path="btgiohang" element={<BaiTapGioHang />} />
@@ -74,6 +76,11 @@ root.render(
             <Route path="detail">
               <Route path=":id" element={<DemoUseParams />}></Route>
             </Route>
+            <Route
+              path="hook-use-search-params"
+              element={<DemoUseSearchParams />}
+            />
+            <Route path="custom-hook" element={<DemoCustom />} />
             <Route path="page404" element={<Page404 />} />
             <Route path="*" element={<Navigate to="/page404" />} />
           </Route>

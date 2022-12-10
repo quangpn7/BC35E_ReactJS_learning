@@ -166,7 +166,23 @@ export default class Header extends Component {
                   <NavLink className="dropdown-item" to="/use-navigate">
                     useNavigate
                   </NavLink>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/hook-use-search-params"
+                  >
+                    useSearchParams
+                  </NavLink>
                 </div>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active bg-dark text-white" : "nav-link"
+                  }
+                  to="/custom-hook"
+                >
+                  CustomHook
+                </NavLink>
               </li>
             </ul>
             <div className="d-flex my-2 my-lg-0">
